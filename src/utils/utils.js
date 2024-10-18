@@ -16,10 +16,6 @@ const checkWinner = (cells) => {
       return pattern;
     }
   }
-
-  if (!cells.includes(null)) {
-    return "Ничья"; // Проверка на ничью
-  }
 };
 
 export default checkWinner;

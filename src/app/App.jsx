@@ -17,25 +17,32 @@ function App() {
     return '';
   } 
 
-  const renderSymbol = (symbol) => <span className={`symbol ${getSymbolClassName(symbol)}`}>{symbol}</span>
-
- const handleClick = (index) => {
-  if (cells[index] || winner) {return}
-  const cellsCopy = cells.slice();
-  cellsCopy[index]=currentStep;
-  const win = checkWinner(cellsCopy);
-
-  setСells(cellsCopy);
-  setcurrentStep( currentStep === SYMBOL_O ? SYMBOL_X : SYMBOL_O);
-  setWinner(win)
-}
-
-const winnerSymbol = winner ? cells[winner?.[0]] : undefined;
+  const handleClick = (index) => {
+    if (cells[index] || winner) {return}
+    const cellsCopy = cells.slice();
+    cellsCopy[index]=currentStep;
+    const win = checkWinner(cellsCopy);
+    
+    setСells(cellsCopy);
+    setcurrentStep( currentStep === SYMBOL_O ? SYMBOL_X : SYMBOL_O);
+    setWinner(win);
+  }
+  const handleReset = () => {
+    setСells(startCells);
+    setWinner(undefined);
+  }
+  
+const renderSymbol = (symbol) => <span className={`symbol ${getSymbolClassName(symbol)}`}>{symbol}</span>
+const winnerSymbol = winner ? cells[winner[0]] : undefined;
+const isDraw = !winner && cells.every(cell => cell !== null);
+console.log("Winner:", winner);
+console.log("Is Draw:", isDraw);
 
   return (
     <div className="game">
       <div className="game-info">
-        {winner ? 'Победил:' : 'Ход:'} {renderSymbol(winnerSymbol ?? currentStep)}
+       {isDraw ? 'Ничья 🤝' : winner ? '🏆 Победил:' : 'Ход:' } 
+       {!isDraw && renderSymbol(winnerSymbol ?? currentStep)}
       </div>
       <div className="game-field">
         {cells.map((symbol, index) => {
@@ -43,6 +50,7 @@ const winnerSymbol = winner ? cells[winner?.[0]] : undefined;
           return <button key={index} className={`cell ${isWinner ? 'cell--win' : ''}`} onClick={()=>handleClick(index)} >{symbol ? renderSymbol(symbol) : null}</button>
         })}
       </div>
+      <button className='reset' onClick={handleReset} >Начать сначала</button>
     </div>
   )
 }

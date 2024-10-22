@@ -10,68 +10,11 @@
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2); 
 }
 
-.game-info {
-  display: flex;
-  align-items: center;
-  gap: 10px; 
-  margin-bottom: 15px; 
-  height: 58px;
-  font-weight: bold; 
-  font-size: 30px;
-}
-
-.game-field {
+.field {
   display: grid;
   grid-template-columns: repeat(3, 80px); 
   grid-template-rows: repeat(3, 80px); 
   padding: 5px; 
-}
-
-.cell {
-  border: none;
-  margin: 3px; 
-  padding-top: 5px; 
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background:transparent;
-  backdrop-filter: blur(5px);
-  border-radius: 10px;
-  box-shadow: 
-    inset 0 -2px 5px rgba(255, 255, 255, 0.5), 
-    inset 0 2px 5px rgba(0, 0, 0, 0.2), 
-    0 4px 10px rgba(0, 0, 0, 0.3);
-  transition: transform 0.2s, box-shadow 0.2s; 
-}
-
-.cell:hover {
-  transform: scale(1.05); 
-}
-
-.cell:active {
-  transform: scale(0.95); 
-  box-shadow: 
-    inset 0 -1px 3px rgba(255, 255, 255, 0.3), 
-    inset 0 1px 3px rgba(0, 0, 0, 0.1), 
-    0 2px 5px rgba(0, 0, 0, 0.2); 
-}
-
-.cell--win {
-  background: rgba(209, 212, 34, 0.4); 
-}
-
-.symbol {
-  font-size: 50px; 
-}
-
-.symbol--x {
-  color: rgb(231, 56, 132);
-  font-weight: bold;
-}
-
-.symbol--o {
-  color: rgb(34, 207, 135);
-  font-weight: bold;
 }
 
 .reset {

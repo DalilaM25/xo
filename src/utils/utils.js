@@ -1,4 +1,7 @@
-const checkWinner = (cells) => {
+export const SYMBOL_X = "X";
+export const SYMBOL_O = "O";
+
+export const checkWinner = (cells) => {
   const winPatterns = [
     [0, 1, 2], // строки
     [3, 4, 5],
@@ -17,5 +20,3 @@ const checkWinner = (cells) => {
     }
   }
 };
-
-export default checkWinner;

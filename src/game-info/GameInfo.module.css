@@ -1,0 +1,11 @@
+.info {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px; 
+    margin-bottom: 15px; 
+    height: 58px;
+    min-width: 120px;
+    font-weight: bold; 
+    font-size: 30px;
+  }

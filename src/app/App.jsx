@@ -1,21 +1,15 @@
-import './App.css'
+import styles from './App.module.css'
 import { useState } from 'react';
-import checkWinner from '../utils/utils';
+import { checkWinner, SYMBOL_O, SYMBOL_X } from '../utils/utils';
+import { GameInfo } from '../game-info/GameInfo';
+import { GameCell } from '../gameCell/GameCell';
 
-const SYMBOL_X = 'X';
-const SYMBOL_O = 'O';
 const startCells = Array(9).fill(null);
 
 function App() {
   const [cells, setСells] = useState(startCells);
   const [currentStep, setcurrentStep] = useState(SYMBOL_O);
   const [winner, setWinner] = useState(); 
-
-  const getSymbolClassName = (symbol) => {
-    if(symbol === SYMBOL_O) return 'symbol--o';
-    if(symbol === SYMBOL_X) return 'symbol--x';
-    return '';
-  } 
 
   const handleClick = (index) => {
     if (cells[index] || winner) {return}
@@ -32,25 +26,31 @@ function App() {
     setWinner(undefined);
   }
   
-const renderSymbol = (symbol) => <span className={`symbol ${getSymbolClassName(symbol)}`}>{symbol}</span>
 const winnerSymbol = winner ? cells[winner[0]] : undefined;
-const isDraw = !winner && cells.every(cell => cell !== null);
-console.log("Winner:", winner);
-console.log("Is Draw:", isDraw);
+const isDraw = !winner && !cells.includes(null);
 
   return (
-    <div className="game">
-      <div className="game-info">
-       {isDraw ? 'Ничья 🤝' : winner ? '🏆 Победил:' : 'Ход:' } 
-       {!isDraw && renderSymbol(winnerSymbol ?? currentStep)}
-      </div>
-      <div className="game-field">
+    <div className={styles.game}>
+      <GameInfo 
+      isDraw={isDraw} 
+      winner={winner} 
+      winnerSymbol={winnerSymbol} 
+      currentStep={currentStep}
+      />
+      <div className={styles.field}>
         {cells.map((symbol, index) => {
-          const isWinner = winner?.includes(index)
-          return <button key={index} className={`cell ${isWinner ? 'cell--win' : ''}`} onClick={()=>handleClick(index)} >{symbol ? renderSymbol(symbol) : null}</button>
+          return(
+          <GameCell 
+          key={index} 
+          onClick={()=>handleClick(index)} 
+          isWinner={winner?.includes(index)} 
+          symbol={symbol}
+          />)
         })}
       </div>
-      <button className='reset' onClick={handleReset} >Начать сначала</button>
+      <button 
+      className={styles.reset} 
+      onClick={handleReset} >Начать сначала</button>
     </div>
   )
 }

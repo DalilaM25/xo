@@ -1,0 +1,13 @@
+.symbol {
+    font-size: 50px; 
+  }
+  
+  .symbol--x {
+    color: rgb(231, 56, 132);
+    font-weight: bold;
+  }
+  
+  .symbol--o {
+    color: rgb(34, 207, 135);
+    font-weight: bold;
+  }

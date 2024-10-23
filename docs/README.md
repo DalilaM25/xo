@@ -2,6 +2,7 @@
 [![JavaScript](https://img.shields.io/badge/JavaScript-333333?logo=javascript)](#)
 [![React](https://img.shields.io/badge/React-18-333333?logo=react)](#)
 
+можно открыть на телефоне или планшете и играть с другом по-очереди
 х о х о х о х о х о х о х о х о х о х о х о х о х о х о х о х о
 
 ## Описание
